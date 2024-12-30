@@ -41,5 +41,4 @@ public class Driver {
     public String toString() {
         return "DriverID: " + this.id + ". " + this.imie + " " + this.nazwisko + " " + pesel;
     }
-
 }

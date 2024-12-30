@@ -23,7 +23,6 @@ public class PolicemanConfig {
             );
 
             policemanRepository.saveAll(List.of(baku, boryna));
-
         };
     }
 }

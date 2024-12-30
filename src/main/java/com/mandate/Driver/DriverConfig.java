@@ -21,7 +21,6 @@ public class DriverConfig {
             );
 
             driverRepository.saveAll(List.of(baku, boryna));
-
         };
     }
 }

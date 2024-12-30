@@ -1,4 +1,5 @@
 package com.mandate.Driver;
+import com.mandate.Policeman.Policeman;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,13 @@ public class DriverService {
 
     public List<Driver> getDrivers() {
         return driverRepository.findAll();
+    }
+
+    public Driver getDriverByPesel(String pesel){
+        Optional<Driver> driver = driverRepository.findDriverByPesel(pesel);
+        if(driver.isEmpty())
+            throw new IllegalStateException("Driver with id: " + pesel + " does not exists");
+        return driver.get();
     }
 
     public void addNewDriver(Driver driver){
@@ -36,9 +44,5 @@ public class DriverService {
             throw new IllegalStateException("Driver with id: " + driverId + " does not exists");
         }
         driverRepository.deleteById(driverId);
-    }
-
-    public Optional<Driver> getDriverByPesel(String pesel) {
-        return driverRepository.findDriverByPesel(pesel);
     }
 }

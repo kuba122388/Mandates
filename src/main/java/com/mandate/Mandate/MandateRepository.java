@@ -11,4 +11,5 @@ public interface MandateRepository extends JpaRepository<Mandate, Long> {
     
     @Query("select m from Mandate m where m.id = ?1")
     Optional<Mandate> findMandateById(String Id);
+
 }
