@@ -2,6 +2,7 @@ package com.mandate.Driver;
 
 import com.mandate.Policeman.Policeman;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,8 +28,10 @@ public class DriverController {
     }
 
     @GetMapping("/{pesel}")
-    public Driver getDriverByPesel(@PathVariable String pesel){
-        return driverService.getDriverByPesel(pesel);
+    public String getDriverByPesel(@PathVariable String pesel, Model model) {
+        Driver driver = driverService.getDriverByPesel(pesel);
+        model.addAttribute("driver", driver);
+        return "driverDetails";  // Przekazuje dane kierowcy do widoku
     }
 
     @PostMapping

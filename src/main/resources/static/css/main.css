@@ -1,0 +1,16 @@
+body{
+    background-color: #4D4D4D;
+}
+
+.form-control::placeholder {
+    color: #f8d7da; 
+    opacity: 1;
+}
+
+.offence{
+    background-color: #979090;
+    color: white;
+    border-radius: 3rem;
+    font-size: 1rem;
+}
+

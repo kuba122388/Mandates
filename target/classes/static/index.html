@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Sprawdź swoje wykroczenia</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/bootstrap.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/main.css'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+    <div id="page1">
+        <div class="d-flex align-items-center justify-content-center mb-5">
+            <h1 class="mb-3"style="color: white;font-size:4rem;margin-right: 1rem;">Sprawdź swoje wykroczenia</h1>
+            <img src="Icons/icons8-customs-officer-96 1.png" alt="Ikona" style="width: 3rem; height: 3rem;">
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="input-group col-6">
+                <form th:action="@{/kierowcy/{pesel}(pesel=${pesel})}" method="GET">
+                    <input type="text" name="pesel" class="form-control form-control-lg" placeholder="Wprowadź PESEL" aria-label="PESEL"
+                        style="margin-right: 1rem; border-radius: 15px; background-color: #979090; color: white;"
+                        maxlength="11" min="0" max="99999999999" pattern="\d{11}" required />
+                    <button class="btn btn-secondary" type="submit" style="border-radius: 15px; background-color: #979090; color: #f8d7da;">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+    <!--Wykroczenia-->
+
+    <div id="page2">
+        <div class="d-flex align-items-center justify-content-center mb-5" style="color: white;">
+            <h2><strong>Kierowca:</strong> <span th:text="${driver.name}"></span></h2>
+        <h2><strong>PESEL:</strong> <span th:text="${driver.pesel}"></span></h2>
+        </div>
+        
+        <div class="d-flex align-items-center justify-content-center mb-5" style="color: white;">
+            <h2>Wykroczenia:</h2>
+        </div>
+
+        <div class="row justify-content-center">  <!-- Używamy .row dla siatki -->
+            <!-- Kolumna z wykroczeniami -->
+            <div class="row justify-content-center">
+                <!-- Kolumna z wykroczeniem -->
+                <div class="col-12 col-md-12 mb-5 offence">
+                    <div class="p-3 d-flex flex-column justify-content-center rounded">
+                        <p><strong>Funkcjonariusz:</strong> Andrzej Mapa</p>
+                        <p><strong>Numer służbowy:</strong> 2475</p>
+                        <p><strong>Data wystawienia:</strong> 27.12.2024 16:19</p>
+                        <p><strong>Status mandatu:</strong> AKTYWNY</p>
+                        <p><strong>Punkty karne:</strong> 10 pkt</p>
+                        <p><strong>Wykroczenie:</strong> Przekroczenie prędkości w terenie zabudowanym o 30 km/h.</p>
+                    </div>
+                </div>
+    
+                <div class="col-12 col-md-12 mb-5 offence">
+                    <div class="p-3 d-flex flex-column justify-content-center rounded">
+                        <p><strong>Funkcjonariusz:</strong> Andrzej Mapa</p>
+                        <p><strong>Numer służbowy:</strong> 2475</p>
+                        <p><strong>Data wystawienia:</strong> 27.12.2024 16:19</p>
+                        <p><strong>Status mandatu:</strong> AKTYWNY</p>
+                        <p><strong>Punkty karne:</strong> 10 pkt</p>
+                        <p><strong>Wykroczenie:</strong> Przekroczenie prędkości w terenie zabudowanym o 30 km/h.</p>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+
+    <script src="js/bootstrap.js"></script>
+</body>
+</html>
