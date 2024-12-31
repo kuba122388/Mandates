@@ -21,8 +21,8 @@ public class PolicemanController {
         return policemanService.getPolicemen();
     }
 
-    @GetMapping("/{badge}") // Tutaj niżej mogłoby być chyba bardziej @PathVariable
-    public Policeman getPolicemanByBadge(@RequestParam String badgeNumber){
+    @GetMapping("/{badge}")
+    public Policeman getPolicemanByBadge(@RequestParam Long badgeNumber){
         return policemanService.getPolicemanByBadge(badgeNumber);
     }
 

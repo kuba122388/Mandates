@@ -18,7 +18,7 @@ public class PolicemanService {
         return policemanRepository.findAll();
     }
 
-    public Policeman getPolicemanByBadge(String numerSluzbowy) {
+    public Policeman getPolicemanByBadge(Long numerSluzbowy) {
         Optional<Policeman> policeman = policemanRepository.findPolicemanByBadge(numerSluzbowy);
         if(policeman.isEmpty())
             throw new IllegalStateException("Policeman with Badge Number of: " + numerSluzbowy + " does not exist");
@@ -26,7 +26,7 @@ public class PolicemanService {
     }
 
     public void addNewPoliceman(Policeman policeman){
-        Optional<Policeman> policemanOptional = policemanRepository.findPolicemanByBadge(policeman.getPesel());
+        Optional<Policeman> policemanOptional = policemanRepository.findPolicemanByBadge(policeman.getNumerSluzbowy());
         if (policemanOptional.isPresent()){
             Policeman existingPoliceman = policemanOptional.get();
             throw new IllegalStateException("Pesel already exist and belongs to: " + existingPoliceman);

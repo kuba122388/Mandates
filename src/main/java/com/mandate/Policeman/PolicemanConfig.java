@@ -2,11 +2,14 @@ package com.mandate.Policeman;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
+
 import java.util.List;
 
 @Configuration
 public class PolicemanConfig {
     @Bean
+    @Order(2)
     CommandLineRunner initPolicemen(PolicemanRepository policemanRepository){
         return args -> {
             Policeman baku = new Policeman(
