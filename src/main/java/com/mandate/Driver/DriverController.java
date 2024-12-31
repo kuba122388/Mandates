@@ -33,8 +33,9 @@ public class DriverController {
     public String getDriverByPesel(@RequestParam(value = "pesel", required = false) String pesel, Model model) {
         System.out.println("Pobrano Drivera: " + pesel);
         Driver driver = driverService.getDriverByPesel(pesel);
+        System.out.println(driver);
         model.addAttribute("driver", driver);
-        return "index";  // Przekazuje dane kierowcy do widoku
+        return "index";
     }
 
     @PostMapping

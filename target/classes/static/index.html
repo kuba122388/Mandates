@@ -32,9 +32,9 @@
             </div>
         </div>
     </div>
-<!--    <div>-->
-<!--        <span style="color: white;"> Current time is </span><span th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}"/>-->
-<!--    </div>-->
+    <!--    <div>-->
+    <!--        <span style="color: white;"> Current time is </span><span th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}"/>-->
+    <!--    </div>-->
 </div>
 
 
@@ -42,7 +42,7 @@
 
 <div id="page2" class="d-flex flex-column justify-content-center">
     <div class="d-flex align-items-center justify-content-center mb-5" th:if="${driver != null}" style="color: white;">
-        <h2><strong>Kierowca:</strong> <span th:text="${driver.name}"></span></h2>
+        <h2><strong>Kierowca:</strong> <span th:text="${driver.imie}+' '+${driver.nazwisko} + '&nbsp;'"></span></h2>
         <h2><strong>PESEL:</strong> <span th:text="${driver.pesel}"></span></h2>
     </div>
 
@@ -78,6 +78,6 @@
         </div>
     </div>
 </div>
-    <script src="js/bootstrap.js"></script>
+<script src="js/bootstrap.js"></script>
 </body>
 </html>
