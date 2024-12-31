@@ -1,14 +1,14 @@
 package com.mandate.Driver;
 
-import com.mandate.Policeman.Policeman;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping(path = "/kierowcy")
+@Controller
+@RequestMapping(path = "/")
 public class DriverController {
     private final DriverService driverService;
 
@@ -17,21 +17,24 @@ public class DriverController {
         this.driverService = driverService;
     }
 
+    @GetMapping
+    public String index(Model model){
+        System.out.println("Strona");
+        // model.addAttribute("lol", "XD");
+        return "index";
+    }
+
     @GetMapping("/list")
     public List<Driver> getDrivers() {
         return driverService.getDrivers();
     }
 
-    @GetMapping
-    public String getSite(){
-        return "Index";
-    }
-
-    @GetMapping("/{pesel}")
-    public String getDriverByPesel(@PathVariable String pesel, Model model) {
+    @GetMapping("/driver")
+    public String getDriverByPesel(@RequestParam(value = "pesel", required = false) String pesel, Model model) {
+        System.out.println("Pobrano Drivera: " + pesel);
         Driver driver = driverService.getDriverByPesel(pesel);
         model.addAttribute("driver", driver);
-        return "driverDetails";  // Przekazuje dane kierowcy do widoku
+        return "index";  // Przekazuje dane kierowcy do widoku
     }
 
     @PostMapping
