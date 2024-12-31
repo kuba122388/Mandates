@@ -1,10 +1,12 @@
 package com.mandate.Mandate;
 
+import com.mandate.Driver.Driver;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MandateService {
@@ -17,6 +19,11 @@ public class MandateService {
 
     public List<Mandate> getMandates() {
         return mandateRepository.findAll();
+    }
+
+    public List<Mandate> getDriverMandates(Driver driver){
+        Optional<List<Mandate>> mandates = mandateRepository.findMandateByDriver(driver);
+        return mandates.orElse(null);
     }
 
     public Mandate createMandate(Mandate mandate) {

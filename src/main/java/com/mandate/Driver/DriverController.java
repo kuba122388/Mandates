@@ -1,5 +1,7 @@
 package com.mandate.Driver;
 
+import com.mandate.Mandate.Mandate;
+import com.mandate.Mandate.MandateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,10 +13,12 @@ import java.util.List;
 @RequestMapping(path = "/")
 public class DriverController {
     private final DriverService driverService;
+    private final MandateService mandateService;
 
     @Autowired
-    public DriverController(DriverService driverService) {
+    public DriverController(DriverService driverService, MandateService mandateService) {
         this.driverService = driverService;
+        this.mandateService = mandateService;
     }
 
     @GetMapping
@@ -33,8 +37,10 @@ public class DriverController {
     public String getDriverByPesel(@RequestParam(value = "pesel", required = false) String pesel, Model model) {
         System.out.println("Pobrano Drivera: " + pesel);
         Driver driver = driverService.getDriverByPesel(pesel);
-        System.out.println(driver);
+//        System.out.println(driver);
+        List<Mandate> mandates = mandateService.getDriverMandates(driver);
         model.addAttribute("driver", driver);
+        model.addAttribute("mandates", mandates);
         return "index";
     }
 

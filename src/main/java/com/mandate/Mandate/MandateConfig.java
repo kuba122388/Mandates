@@ -9,6 +9,7 @@ import org.springframework.core.annotation.Order;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 @Configuration
 public class MandateConfig {
@@ -36,7 +37,19 @@ public class MandateConfig {
                     Status.AKTYWNY
             );
 
-            mandateRepository.save(mandate1); // Zapisanie mandatu w bazie danych
+            Mandate mandate2 = new Mandate(
+                    null,
+                    policemanService.getPolicemanByBadge(2463L),
+                    driverService.getDriverByPesel("02243005914"),
+                    "Grzebanie w smieciach",
+                    Date.valueOf(LocalDate.of(2024, 6, 22)),
+                    "Zduńska Wola",
+                    10,
+                    800f,
+                    Status.AKTYWNY
+            );
+
+            mandateRepository.saveAll(List.of(mandate1, mandate2)); // Zapisanie mandatu w bazie danych
         };
     }
 }
