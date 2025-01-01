@@ -77,11 +77,11 @@
 </div>
 
 <div class="d-flex align-items-center justify-content-center mb-5" th:if="${pesel!=null and driver == null}">
-    <h2 style="text-align: center">
+    <h4 style="text-align: center">
         <strong> Kierowca o numerze PESEL: </strong>
         <span th:text="${pesel} + ' '"></span>
         <strong> nie&nbsp;istnieje.</strong>
-    </h2>
+    </h4>
 </div>
 
 <script src="js/bootstrap.js"></script>
