@@ -1,4 +1,5 @@
 body{
+    padding: 10px;
     background-color: #4D4D4D;
     color: white;
 }
@@ -15,3 +16,6 @@ body{
     font-size: 1rem;
 }
 
+#page1{
+    margin-top: 5vh;
+}

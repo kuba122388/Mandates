@@ -11,16 +11,16 @@
 </head>
 <body>
 <div id="page1" class="mb-5 d-flex flex-column justify-content-center align-items-center">
-    <div class="mb-5">
+    <div class="mb-5 col-10">
         <div class="d-flex align-items-center justify-content-center mb-5">
-            <h1 class="mb-3" style="color: white;font-size:4rem;margin-right: 1rem;text-align: center">Sprawdź swoje
+            <h1 class="mb-3" style="color: white;font-size:4rem; margin-right: 1rem;text-align: center">Sprawdź swoje
                 wykroczenia</h1>
             <img src="Icons/icons8-customs-officer-96 1.png" alt="Ikona" style="width: 3rem; height: 3rem;">
         </div>
         <div class="d-flex justify-content-center">
-            <div class="input-group col-8 justify-content-center">
-                <form th:action="@{/driver}" class="form-inline" method="GET">
-                    <input type="text" name="pesel" class="form-control form-control-lg" placeholder="Wprowadź PESEL"
+            <div class="input-group col-10 justify-content-center">
+                <form th:action="@{/driver}" class="form-inline justify-content-center" method="GET">
+                    <input type="text" name="pesel" class="form-control form-control-lg col-9" placeholder="Wprowadź PESEL"
                            aria-label="PESEL"
                            style="margin-right: 1rem; border-radius: 15px; background-color: #979090; color: white;"
                            maxlength="11" min="0" max="99999999999" pattern="\d{11}" required/>
@@ -41,8 +41,8 @@
 <!--Wykroczenia-->
 
 <div id="page2" class="d-flex flex-column justify-content-center" th:if="${pesel != null and driver != null}">
-    <div class="d-flex align-items-center justify-content-center mb-5" th:if="${driver != null}" style="color: white;">
-        <h2><strong>Kierowca:</strong> <span th:text="${driver.imie}+' '+${driver.nazwisko} + '&nbsp;'"></span></h2>
+    <div class="d-flex align-items-center justify-content-center mb-5" th:if="${driver != null}" style="text-align: center">
+        <h2><strong>Kierowca:</strong> <span th:text="${driver.imie}+'&nbsp;'+${driver.nazwisko} + '&nbsp;'"></span></h2>
         <h2><strong>PESEL:</strong> <span th:text="${driver.pesel}"></span></h2>
     </div>
 
@@ -51,7 +51,7 @@
     </div>
 
     <div class="d-flex justify-content-center" th:if="${!#lists.isEmpty(mandates)}">
-        <div class="col-md-6 justify-content-center">
+        <div class="col-md-10 col-lg-8 justify-content-center" style="max-width: 1200px;">
             <div class="col-12 col-md-12 mb-5 offence" th:each="mandate : ${mandates}">
                 <div class="p-3 d-flex flex-column justify-content-center rounded">
                     <p><strong>Funkcjonariusz wystawiający mandat: </strong><span
@@ -77,10 +77,10 @@
 </div>
 
 <div class="d-flex align-items-center justify-content-center mb-5" th:if="${pesel!=null and driver == null}">
-    <h2>
+    <h2 style="text-align: center">
         <strong> Kierowca o numerze PESEL: </strong>
         <span th:text="${pesel} + ' '"></span>
-        <strong> nie istnieje.</strong>
+        <strong> nie&nbsp;istnieje.</strong>
     </h2>
 </div>
 
