@@ -40,7 +40,7 @@
 
 <!--Wykroczenia-->
 
-<div id="page2" class="d-flex flex-column justify-content-center">
+<div id="page2" class="d-flex flex-column justify-content-center" th:if="${pesel != null and driver != null}">
     <div class="d-flex align-items-center justify-content-center mb-5" th:if="${driver != null}" style="color: white;">
         <h2><strong>Kierowca:</strong> <span th:text="${driver.imie}+' '+${driver.nazwisko} + '&nbsp;'"></span></h2>
         <h2><strong>PESEL:</strong> <span th:text="${driver.pesel}"></span></h2>
@@ -50,34 +50,40 @@
         <h2>Wykroczenia:</h2>
     </div>
 
-    <div class="d-flex justify-content-center">
-        <!-- Kolumna z wykroczeniami -->
+    <div class="d-flex justify-content-center" th:if="${!#lists.isEmpty(mandates)}">
         <div class="col-md-6 justify-content-center">
-            <!-- Kolumna z wykroczeniem -->
-            <div class="col-12 col-md-12 mb-5 offence">
+            <div class="col-12 col-md-12 mb-5 offence" th:each="mandate : ${mandates}">
                 <div class="p-3 d-flex flex-column justify-content-center rounded">
-                    <p><strong>Funkcjonariusz:</strong> Andrzej Mapa</p>
-                    <p><strong>Numer służbowy:</strong> 2475</p>
-                    <p><strong>Data wystawienia:</strong> 27.12.2024 16:19</p>
-                    <p><strong>Status mandatu:</strong> AKTYWNY</p>
-                    <p><strong>Punkty karne:</strong> 10 pkt</p>
-                    <p><strong>Wykroczenie:</strong> Przekroczenie prędkości w terenie zabudowanym o 30 km/h.</p>
+                    <p><strong>Funkcjonariusz wystawiający mandat: </strong><span
+                            th:text="${mandate.policjant.imie} + ' ' + ${mandate.policjant.nazwisko}"></span></p>
+                    <p><strong>Numer służbowy: </strong><span th:text="${mandate.policjant.numerSluzbowy}"></span></p>
+                    <p><strong>Data i miejsce wystawienia mandatu: </strong><span
+                            th:text="${#dates.format(mandate.dataWystawienia, 'yyyy-MM-dd HH:mm')}"></span></p>
+                    <p><strong>Status mandatu: </strong><span th:text="${mandate.status}"></span></p>
+                    <p><strong>Wykroczenie recydywistyczne: </strong><span th:text="${mandate.recydywa}"></span></p>
+                    <p><strong>Wykroczenie: </strong><span th:text="${mandate.wykroczenie}"></span></p>
+                    <p><strong>Punkty karne: </strong><span th:text="${mandate.punkty}"></span></p>
+                    <p><strong>Kwota: </strong><span
+                            th:text="${#numbers.formatDecimal(mandate.kwota, 2, 2)} + ' PLN'"></span></p>
                 </div>
             </div>
 
-            <div class="col-12 col-md-12 mb-5 offence">
-                <div class="p-3 d-flex flex-column justify-content-center rounded">
-                    <p><strong>Funkcjonariusz:</strong> Andrzej Mapa</p>
-                    <p><strong>Numer służbowy:</strong> 2475</p>
-                    <p><strong>Data wystawienia:</strong> 27.12.2024 16:19</p>
-                    <p><strong>Status mandatu:</strong> AKTYWNY</p>
-                    <p><strong>Punkty karne:</strong> 10 pkt</p>
-                    <p><strong>Wykroczenie:</strong> Przekroczenie prędkości w terenie zabudowanym o 30 km/h.</p>
-                </div>
-            </div>
         </div>
     </div>
+
+    <div style="text-align: center" th:if="${#lists.isEmpty(mandates)}">
+        <span style="font-size: 1.5rem; color: white">Brak zarejestrowanych wykroczeń</span>
+    </div>
 </div>
+
+<div class="d-flex align-items-center justify-content-center mb-5" th:if="${pesel!=null and driver == null}">
+    <h2>
+        <strong> Kierowca o numerze PESEL: </strong>
+        <span th:text="${pesel} + ' '"></span>
+        <strong> nie istnieje.</strong>
+    </h2>
+</div>
+
 <script src="js/bootstrap.js"></script>
 </body>
 </html>

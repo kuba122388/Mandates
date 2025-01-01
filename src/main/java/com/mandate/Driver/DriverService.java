@@ -21,9 +21,9 @@ public class DriverService {
 
     public Driver getDriverByPesel(String pesel){
         Optional<Driver> driver = driverRepository.findDriverByPesel(pesel);
-        if(driver.isEmpty())
-            throw new IllegalStateException("Driver with id: " + pesel + " does not exists");
-        return driver.get();
+//        if(driver.isEmpty())
+//            throw new IllegalStateException("Driver with id: " + pesel + " does not exists");
+        return driver.orElse(null);
     }
 
     public void addNewDriver(Driver driver){

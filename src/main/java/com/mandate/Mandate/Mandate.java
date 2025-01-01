@@ -48,9 +48,16 @@ public class Mandate {
     private Integer punkty;
 
     @Column(nullable = false)
+    private Boolean recydywa;
+
+    @Column(nullable = false)
     private Float kwota;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Status status;
+
+    public String getRecydywa() {
+        return recydywa ? "TAK" : "NIE";
+    }
 }

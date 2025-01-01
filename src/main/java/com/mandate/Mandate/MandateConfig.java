@@ -33,6 +33,7 @@ public class MandateConfig {
                     Date.valueOf(LocalDate.of(2002, 4, 30)),
                     "Zduńska Wola",
                     10,
+                    false,
                     800f,
                     Status.AKTYWNY
             );
@@ -45,6 +46,7 @@ public class MandateConfig {
                     Date.valueOf(LocalDate.of(2024, 6, 22)),
                     "Zduńska Wola",
                     10,
+                    false,
                     800f,
                     Status.AKTYWNY
             );

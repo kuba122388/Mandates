@@ -24,7 +24,6 @@ public class DriverController {
     @GetMapping
     public String index(Model model){
         System.out.println("Strona");
-        // model.addAttribute("lol", "XD");
         return "index";
     }
 
@@ -39,6 +38,7 @@ public class DriverController {
         Driver driver = driverService.getDriverByPesel(pesel);
 //        System.out.println(driver);
         List<Mandate> mandates = mandateService.getDriverMandates(driver);
+        model.addAttribute("pesel", pesel);
         model.addAttribute("driver", driver);
         model.addAttribute("mandates", mandates);
         return "index";
