@@ -1,48 +1,47 @@
 package com.mandate.Driver;
-import com.mandate.Policeman.Policeman;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Klasa odpowiedzialna za operacje związane z kierowcami.
+ * Zawiera metody do pobierania kierowców z bazy danych.
+ */
 @Service
 public class DriverService {
+
     private final DriverRepository driverRepository;
 
+    /**
+     * Konstruktor klasy.
+     *
+     * @param driverRepository repozytorium, które służy do wykonywania operacji na danych kierowców.
+     */
     @Autowired
     public DriverService(DriverRepository driverRepository) {
         this.driverRepository = driverRepository;
     }
 
+    /**
+     * Pobiera listę wszystkich kierowców z bazy danych.
+     *
+     * @return lista obiektów Driver, zawierająca wszystkich kierowców w bazie danych.
+     */
     public List<Driver> getDrivers() {
         return driverRepository.findAll();
     }
 
-    public Driver getDriverByPesel(String pesel){
+    /**
+     * Pobiera kierowcę na podstawie numeru PESEL.
+     *
+     * @param pesel numer PESEL kierowcy.
+     * @return obiekt Driver, który pasuje do podanego numeru PESEL lub null, jeśli kierowca nie istnieje.
+     */
+    public Driver getDriverByPesel(String pesel) {
         Optional<Driver> driver = driverRepository.findDriverByPesel(pesel);
-//        if(driver.isEmpty())
-//            throw new IllegalStateException("Driver with id: " + pesel + " does not exists");
         return driver.orElse(null);
-    }
-
-    public void addNewDriver(Driver driver){
-        if (driver == null)
-            throw new IllegalStateException("Cannot add null driver value");
-
-        Optional<Driver> driverOptional = driverRepository.findDriverByPesel(driver.getPesel());
-        if (driverOptional.isPresent()){
-            Driver existingDriver = driverOptional.get();
-            throw new IllegalStateException("Pesel already exist and belongs to: " + existingDriver);
-        }
-        this.driverRepository.save(driver);
-    }
-
-    public void deleteDriver(Long driverId) {
-        boolean exists = driverRepository.existsById(driverId);
-        if(!exists){
-            throw new IllegalStateException("Driver with id: " + driverId + " does not exists");
-        }
-        driverRepository.deleteById(driverId);
     }
 }
