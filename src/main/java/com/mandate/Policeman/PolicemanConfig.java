@@ -30,19 +30,38 @@ public class PolicemanConfig {
     @Order(2)
     CommandLineRunner initPolicemen(PolicemanRepository policemanRepository) {
         return args -> {
-            Policeman baku = new Policeman(
+            Policeman p1 = new Policeman(
                     2463L,
                     "Jan",
                     "Kowalski",
                     "09281028389"
             );
-            Policeman boryna = new Policeman(
+            Policeman p2 = new Policeman(
                     5129L,
                     "Marcin",
                     "Różycki",
                     "2412312240"
             );
-            policemanRepository.saveAll(List.of(baku, boryna));
+            Policeman p3 = new Policeman(
+                    7312L,
+                    "Anna",
+                    "Wiśniewska",
+                    "12345098765"
+            );
+            Policeman p4 = new Policeman(
+                    4821L,
+                    "Tomasz",
+                    "Nowak",
+                    "09876123456"
+            );
+            Policeman p5 = new Policeman(
+                    5623L,
+                    "Ewa",
+                    "Kamińska",
+                    "07654321987"
+            );
+
+            policemanRepository.saveAll(List.of(p1, p2, p3, p4, p5));
         };
     }
 }
